@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -17,6 +18,9 @@ import { CreateDeliveryComponent } from './delivery/create-delivery/create-deliv
 
 import {Routes, RouterModule} from '@angular/router';
 import {HttpModule} from '@angular/http';
+
+import {CdkTableModule} from '@angular/cdk/table';
+import {MatPaginator, MatTableModule} from '@angular/material';
 
 
 const appRoutes: Routes = [
@@ -50,10 +54,15 @@ const appRoutes: Routes = [
     BrowserModule,
     MDBBootstrapModule.forRoot(),
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    CdkTableModule,
+    MatTableModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [AppComponent],
   bootstrap: [AppComponent]
 })
+
+
+
 export class AppModule { }

@@ -1,3 +1,80 @@
-<p>
-  company works!
-</p>
+<div class="container">
+  <div class = "row">
+    <div class = "col-12">
+      <h2>{{title}}</h2>
+     </div>
+  </div>
+<br><br>
+<div class="row">
+   <div class="col-3"> <input  type="text" (keyup)="onCompanyFilter($event)"  placeholder="Company Name"/> </div>
+  <div class="col-3"> <input type="text" placeholder="Country"/> </div>
+  
+</div>
+<br>
+
+<div class = "row">
+
+ <div class = "col-12">
+ <table class = "table table-hover table-bordered table-responsive">
+ <thead class="mdb-color darken-3">
+<tr class="text-white"> 
+    <th *ngFor = "let head of displayedColumns" >{{head}} </th> 
+       
+</tr>
+ </thead>
+
+ <tbody>
+       <ng-container *ngFor = "let company of tableDisplay">
+   <tr> 
+     <th> {{company.companyName}} </th>
+     <th> {{company.companyDescription}} </th>
+     <th> {{company.address1 + ", " + company.city + ", " + company.stateDets.stateDesc + " ," + company.zipcode+", "+company.countryDets.countryDesc}} </th>
+   </tr>
+   </ng-container>
+</tbody>
+
+   </table>
+
+
+   
+<div class="example-container mat-elevation-z8">
+
+
+ <mat-table #table [dataSource]="dataSource">
+
+    
+    <ng-container matColumnDef="companyName">
+      <mat-header-cell *matHeaderCellDef> Company Name </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.companyName}} </mat-cell>
+    </ng-container>
+
+   
+    <ng-container matColumnDef="companyDescription">
+      <mat-header-cell *matHeaderCellDef> Company Description </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.companyDescription}}</mat-cell>
+    </ng-container>
+
+    
+    <ng-container matColumnDef="companyAddress">
+      <mat-header-cell *matHeaderCellDef> Company Address </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.address1}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumnsTwo"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumnsTwo;"></mat-row>
+  </mat-table>
+
+  <mat-paginator #paginator
+                [length]="100"
+                [pageIndex]="0"
+                [pageSize]="25"
+                [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+
+</div>
+
+
+  </div>
+  </div>
+
+ </div>
